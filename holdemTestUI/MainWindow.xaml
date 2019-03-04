@@ -3,23 +3,27 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:holdemTestUI"
+        xmlns:local="clr-namespace:holdemTestUI.ViewModel"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800"
+        d:DataContext="{d:DesignInstance local:ViewModel}">
+    <Window.DataContext>
+        <local:ViewModel/>
+    </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="3*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <StackPanel>
-            <TextBlock Name="output" TextWrapping="Wrap" Height="200"/>
-            <TextBlock Name="output2" TextWrapping="Wrap" Height="100"/>
+            <TextBlock Name="output" Text="{Binding Text1, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" Height="200"/>
+            <TextBlock Name="output2" Text ="{Binding Text2, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" Height="100"/>
         </StackPanel>
         
         <WrapPanel Grid.Row="1">
-            <Button Name ="button" Click="Button_Click" Width=" 100 " Height="100"></Button>
-            <Button Name ="button1" Click="Button_Click_1" Width=" 100 " Height="100"></Button>
-            <Button Name ="button2" Click="Button_Click_2" Width=" 100 " Height="100"></Button>
+            <Button Command="{Binding CreateDeckCommand}" Width=" 100 " Height="100">New Deck</Button>
+            <Button Command="{Binding ShuffleCommand}" Width=" 100 " Height="100">Shuffle</Button>
+            <Button Command="{Binding DrawCardCommand}" Width=" 100 " Height="100">Draw</Button>
         </WrapPanel>
         
     </Grid>

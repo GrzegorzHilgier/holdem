@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using System.ComponentModel;
 
-namespace Simple_MVVM.ViewModels
+namespace holdemTestUI.ViewModel
 {
     public abstract class ObservableObject : INotifyPropertyChanged
     {
