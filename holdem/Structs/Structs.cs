@@ -46,7 +46,7 @@ namespace holdem
         }
     }
 
-    public struct Log
+    internal struct Log
     {
         readonly string nick;
         readonly PlayerAction action;
@@ -65,4 +65,5 @@ namespace holdem
     {
 
     }
+
 }

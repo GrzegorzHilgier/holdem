@@ -6,7 +6,8 @@ namespace holdem
 {
     interface ILoggable
     {
-        List<Log> GetLog();
-        Status GetStatus(); 
+        string GetLog();
+        string GetStatus();
+        ViewData GetViewData();
     }
 }
