@@ -4,5 +4,5 @@ using System.Text;
 
 namespace holdem
 {
-    public enum CardSuit { SPADES, HEARTS, DIAMONDS, CLUBS };
+    public enum CardSuit { BLANK, SPADES, HEARTS, DIAMONDS, CLUBS };
 }

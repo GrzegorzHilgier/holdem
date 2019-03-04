@@ -4,11 +4,7 @@ using System.Text;
 
 namespace holdem
 {
-    class GameEngine
+    struct Status
     {
-        public GameEngine(InitData initData)
-        {
-
-        }
     }
 }
