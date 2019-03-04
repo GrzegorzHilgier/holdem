@@ -4,26 +4,42 @@ using System.Text;
 
 namespace holdem
 {
-    class Deck
+    public class Deck
     {
-        private Stack<Card> _cards;
-        public Stack<Card> Cards { get => _cards; private set => _cards = value; }
+        private List<Card> _cards;
+        public List<Card> Cards { get => _cards; private set => _cards = value; }
 
-        public Deck(int size)
+        public Deck()
         {
-            for (int i = (int)CardFigure.TWO; i < (int)CardFigure.ACE; i++)
-                for (int j = (int)CardSuit.SPADES; i < (int)CardSuit.CLUBS; i++)
-                    Cards.Push(new Card((CardFigure)i, (CardSuit)j));
+            _cards = new List<Card>();
+            for (int i = (int)CardFigure.TWO; i <= (int)CardFigure.ACE; i++)
+                for (int j = (int)CardSuit.SPADES; j <= (int)CardSuit.CLUBS; j++)
+                    Cards.Add(new Card((CardFigure)i, (CardSuit)j));
         }
         public Card? DrawCard()
         {
             if (Cards.Count > 0)
-                return Cards.Pop();
+            {
+                var buf = Cards[0];
+                Cards.RemoveAt(0);
+                return buf;
+            }
             else
                 return null;
         }
         public void Shuffle()
         {
+            Cards.Shuffle();
+        }
+        public override string ToString()
+        {
+            string result = string.Empty;
+            result += $"Total cards : { Cards.Count.ToString()};  ";
+            foreach (Card card in Cards)
+            {
+                result += card.ToString() + ";   ";
+            }
+            return result;
 
         }
     }

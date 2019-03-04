@@ -17,5 +17,9 @@ namespace holdem
             _suit = suit;
             _figure = figure;
         }
+        public override string ToString()
+        {
+            return $"{Figure.ToString()}, {Suit.ToString()}";
+        }
     };
 }
