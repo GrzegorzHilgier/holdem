@@ -4,11 +4,12 @@ using System.Text;
 
 namespace holdem
 {
-    class GameEngine
+    class InitData
     {
-        public GameEngine(InitData initData)
-        {
+    }
 
-        }
+    class TournamentInitData : InitData
+    {
+
     }
 }

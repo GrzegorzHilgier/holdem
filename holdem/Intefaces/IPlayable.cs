@@ -4,10 +4,11 @@ using System.Text;
 
 namespace holdem
 {
-    interface ILoggable
+    interface IPlayable
     {
-        string GetLog();
+        void StartNewGame();
+        void Trigger(int amount);
+        Log GetLog();
         string GetStatus();
-        ViewData GetViewData();
     }
 }

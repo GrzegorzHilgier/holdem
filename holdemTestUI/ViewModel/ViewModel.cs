@@ -1,8 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿
 using System.Windows.Input;
-using System.Windows;
-
 using holdem;
 
 namespace holdemTestUI.ViewModel

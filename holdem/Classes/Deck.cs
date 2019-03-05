@@ -9,28 +9,37 @@ namespace holdem
         private List<Card> _cards;
         public List<Card> Cards { get => _cards; private set => _cards = value; }
 
-        public Deck()
+        private void DeckFill()
         {
-            _cards = new List<Card>();
             for (int i = (int)CardFigure.TWO; i <= (int)CardFigure.ACE; i++)
                 for (int j = (int)CardSuit.SPADES; j <= (int)CardSuit.CLUBS; j++)
                     Cards.Add(new Card((CardFigure)i, (CardSuit)j));
         }
-        public Card? DrawCard()
+    
+        public Deck()
         {
-            if (Cards.Count > 0)
-            {
-                var buf = Cards[0];
-                Cards.RemoveAt(0);
-                return buf;
-            }
-            else
-                return null;
+            _cards = new List<Card>();
+            DeckFill();
         }
+
+        public Card DrawCard()
+        {
+            Card buf;
+            if (Cards.Count == 0)
+                Shuffle();
+            buf = Cards[0];
+            Cards.RemoveAt(0);
+                return buf;
+
+        }
+
         public void Shuffle()
         {
+            Cards.RemoveAll(x=>true);
+            DeckFill();
             Cards.Shuffle();
         }
+        
         public override string ToString()
         {
             string result = string.Empty;
