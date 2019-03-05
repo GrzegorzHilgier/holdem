@@ -12,8 +12,4 @@ namespace holdem
         string GetStatus();
     }
 
-    internal interface IHasBlankValue
-    {
-
-    }
 }

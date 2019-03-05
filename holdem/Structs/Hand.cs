@@ -4,7 +4,7 @@ using System.Text;
 
 namespace holdem
 {
-    struct Hand<T>
+    struct Hand<T> where T : new()
     {
         private bool _isShown;
         List<T> _list;        
@@ -16,7 +16,13 @@ namespace holdem
             get
             {
                 if (IsShown) return _list;
-                else return null;
+                else
+                {
+                    List<T> blankList = new List<T>();
+                    for (int i = 0; i< ItemList.Count; i++)
+                        blankList.Add(new T());
+                    return blankList;
+                }
             }
             private set => _list = value;
         }
