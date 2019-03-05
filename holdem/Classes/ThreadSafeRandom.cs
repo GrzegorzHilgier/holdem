@@ -3,11 +3,11 @@ using System.Threading;
 
 namespace holdem
 {
-    public static class ThreadSafeRandom
+    internal static class ThreadSafeRandom
     {
         [ThreadStatic] private static Random Local;
 
-        public static Random ThisThreadsRandom
+        internal static Random ThisThreadsRandom
         {
             get { return Local ?? (Local = new Random(unchecked(Environment.TickCount * 31 + Thread.CurrentThread.ManagedThreadId))); }
         }

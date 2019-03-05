@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace holdem.Classes
+namespace holdem
 {
     class Log
     {

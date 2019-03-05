@@ -4,33 +4,35 @@ using System.Text;
 
 namespace holdem
 {
-    public struct Hand
+    struct Hand<T>
     {
         private bool _isShown;
-        Card _card1;
-        Card _card2;
+        List<T> _list;        
+        ushort _maxItems;
 
-        public bool IsShown { get => _isShown; private set => _isShown = value; }
-        public Card Card1
+        public bool IsShown { get => _isShown; internal set => _isShown = value; }
+        public List<T> ItemList
         {
             get
             {
-                if (IsShown) return _card1;
-                else return new Card(CardFigure.BLANK, CardSuit.BLANK);
+                if (IsShown) return _list;
+                else return null;
             }
-
-            private set => _card1 = value;
+            private set => _list = value;
         }
 
-        public Card Card2
+        public ushort MaxItems { get => _maxItems; private set => _maxItems = value; }
+        public void Fill(Func<T> func)
         {
-            get
-            {
-                if (IsShown) return _card2;
-                else return new Card(CardFigure.BLANK,CardSuit.BLANK);
-            }
+            while (ItemList.Count < MaxItems)
+                ItemList.Add(func());
+        }
 
-            private set => _card2 = value;
+        public Hand(ushort maxItems)
+        {
+            _isShown = false;
+            _list = new List<T>();
+            _maxItems = maxItems;
         }
     }
 }
