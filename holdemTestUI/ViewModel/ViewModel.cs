@@ -40,9 +40,9 @@ namespace holdemTestUI.ViewModel
             game.StartStack = 1500;
             game.StartNewGame();
             Log log = game.GetLog();
-            List<List<string>> Players = log.ListOfItemStrings;
-            for (int i = 0; i < Players[0].Count; i++)
-                player.Add(Players[0][i]);
+            List<List<string>> buf = log.ListOfItemStrings;
+            for (int i = 0; i < buf[0].Count; i++)
+                player.Add(buf[0][i]);
                 
             //for (int i = 0; i < buf.Count; i++)
             //    for (int j = 0; j < buf[i].Count; j++)
