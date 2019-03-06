@@ -5,24 +5,50 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:holdemTestUI.ViewModel"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="1000"
+        Title="MainWindow" Height="600" Width="1500"
         d:DataContext="{d:DesignInstance local:ViewModel}">
     <Window.DataContext>
         <local:ViewModel/>
     </Window.DataContext>
+    <Window.Resources>
+        <Style x:Key="PlayerData" TargetType="ListBox">
+            <Setter Property="Foreground" Value="Gray" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="Height" Value="AUTO" />
+            <Setter Property="Width" Value="AUTO" />
+        </Style>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="4*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <WrapPanel >
-            <ListBox ItemsSource="{Binding Player}" Height="100" Width="100" Margin="5"/>
-            <ListBox ItemsSource="{Binding Player[1]}" Height="100" Width="100" Margin="5"/>
-            
-            
+        <Grid >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <ListBox ItemsSource="{Binding Players[0]}" Style="{StaticResource PlayerData}" />
+            <ListBox Grid.Column="1"  ItemsSource="{Binding Players[1]}" Style="{StaticResource PlayerData}" />
+            <ListBox Grid.Column="2"  ItemsSource="{Binding Players[2]}" Style="{StaticResource PlayerData}" />
+            <ListBox Grid.Column="3"  ItemsSource="{Binding Players[3]}" Style="{StaticResource PlayerData}" />
+            <ListBox Grid.Column="4"  ItemsSource="{Binding Players[4]}" Style="{StaticResource PlayerData}" />
+            <ListBox Grid.Column="5"  ItemsSource="{Binding Players[5]}" Style="{StaticResource PlayerData}" />
+            <ListBox Grid.Column="6"  ItemsSource="{Binding Players[6]}" Style="{StaticResource PlayerData}" />
+            <ListBox Grid.Column="7"  ItemsSource="{Binding Players[7]}" Style="{StaticResource PlayerData}" />
+            <ListBox Grid.Column="8"  ItemsSource="{Binding Players[8]}" Style="{StaticResource PlayerData}" />
+            <ListBox Grid.Column="9"  ItemsSource="{Binding Players[9]}" Style="{StaticResource PlayerData}" />
 
-        </WrapPanel>
+        </Grid>
 
         <WrapPanel Grid.Row="2" >
             <Button Command="{Binding StartTournamentCommand}" Width=" 100 " Height="100">init</Button>

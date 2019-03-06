@@ -10,7 +10,7 @@ namespace holdemTestUI.ViewModel
 
   
         public Tournament tournament;
-        private List<List<string>> players = new List<List<string>>();
+        private ObservableCollection<List<string>> players = new ObservableCollection<List<string>>();
         private ObservableCollection<string> player = new ObservableCollection<string>();
 
 
@@ -19,7 +19,7 @@ namespace holdemTestUI.ViewModel
             get { return new SimpleCommand(StartTournament); }
         }
 
-        public List<List<string>> Players { get => players; set => players = value; }
+        public IEnumerable<List<string>> Players { get => players; }
         public IEnumerable<string> Player { get => player; }
 
         public void StartTournament()
@@ -41,12 +41,20 @@ namespace holdemTestUI.ViewModel
             game.StartNewGame();
             Log log = game.GetLog();
             List<List<string>> buf = log.ListOfItemStrings;
-            for (int i = 0; i < buf[0].Count; i++)
-                player.Add(buf[0][i]);
-                
-            //for (int i = 0; i < buf.Count; i++)
-            //    for (int j = 0; j < buf[i].Count; j++)
-            //        Players[i].Add(buf[i][j]);
+            //players.Add(new List<string>());
+            //for (int i = 0; i < buf[0].Count; i++)
+            //    players[0].Add(buf[0][i]);
+
+            for (int i = 0; i < buf.Count; i++)
+            {
+                players.Add(new List<string>());
+                for (int j = 0; j < buf[i].Count; j++)
+                {
+
+                    players[i].Add(buf[i][j]);
+                }
+            }
+                   
 
         }
 

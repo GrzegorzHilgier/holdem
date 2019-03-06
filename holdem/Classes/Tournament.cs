@@ -38,7 +38,10 @@ namespace holdem
             CardDeck deck = new CardDeck();
 
             foreach (HoldemPlayer player in PlayersInGame)
+            {
                 player.Fill(deck.DrawCard);
+                player.ChangeStackAmount(StartStack);
+            }
 
             log = new Log(PlayersInGame);
 
