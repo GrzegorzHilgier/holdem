@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace holdem
 {
-    public class Deck
+    public class CardDeck
     {
         private List<Card> _cards;
         public List<Card> Cards { get => _cards; private set => _cards = value; }
@@ -16,10 +14,10 @@ namespace holdem
                     Cards.Add(new Card((CardFigure)i, (CardSuit)j));
         }
     
-        public Deck()
+        public CardDeck()
         {
             _cards = new List<Card>();
-            DeckFill();
+            Shuffle();
         }
 
         public Card DrawCard()
@@ -30,7 +28,6 @@ namespace holdem
             buf = Cards[0];
             Cards.RemoveAt(0);
                 return buf;
-
         }
 
         public void Shuffle()

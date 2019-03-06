@@ -1,5 +1,6 @@
-﻿
+﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
+using System.Collections.Generic;
 using holdem;
 
 namespace holdemTestUI.ViewModel
@@ -7,57 +8,48 @@ namespace holdemTestUI.ViewModel
     class ViewModel :ObservableObject
     {
 
-        string text1;
-        string text2;
-        private Deck deck;
+  
+        public Tournament tournament;
+        private List<List<string>> players = new List<List<string>>();
+        private ObservableCollection<string> player = new ObservableCollection<string>();
 
-        public ICommand CreateDeckCommand
+
+        public ICommand StartTournamentCommand
         {
-            get { return new SimpleCommand(CreateDeck); }
-        }
-        public ICommand ShuffleCommand
-        {
-            get { return new SimpleCommand(Shuffle); }
-        }
-        public ICommand DrawCardCommand
-        {
-            get { return new SimpleCommand(DrawCard); }
+            get { return new SimpleCommand(StartTournament); }
         }
 
-        public string Text1
-        { get => text1;
-            set
-            {
-                text1 = value;
-                RaisePropertyChangedEvent("Text1");
-            } 
-        }
-        public string Text2
+        public List<List<string>> Players { get => players; set => players = value; }
+        public IEnumerable<string> Player { get => player; }
+
+        public void StartTournament()
         {
-            get => text2;
-            set
-            {
-                text2 = value;
-                RaisePropertyChangedEvent("Text2");
-            }
+
+            tournament = new Tournament();
+            IPlayable game = tournament;
+            game.AddPlayer("Grzegorz", 0);
+            game.AddPlayer("Marek", 0);
+            game.AddPlayer("Borys", 0);
+            game.AddPlayer("Arnold", 0);
+            game.AddPlayer("Grzeg", 0);
+            game.AddPlayer("Mar", 0);
+            game.AddPlayer("Bor", 0);
+            game.AddPlayer("Arn", 0);
+            game.AddPlayer("gorz", 0);
+            game.AddPlayer("rek", 0);
+            game.StartStack = 1500;
+            game.StartNewGame();
+            Log log = game.GetLog();
+            List<List<string>> Players = log.ListOfItemStrings;
+            for (int i = 0; i < Players[0].Count; i++)
+                player.Add(Players[0][i]);
+                
+            //for (int i = 0; i < buf.Count; i++)
+            //    for (int j = 0; j < buf[i].Count; j++)
+            //        Players[i].Add(buf[i][j]);
+
         }
 
-        public void Shuffle()
-        {
-            deck.Shuffle();
-            Text1 = deck.ToString();
-        }
-        
-        public void DrawCard()
-        {
-            Text2 += deck.DrawCard().ToString();
-            Text1 = deck.ToString();
-        }
-        public void CreateDeck()
-        {
-            deck = new Deck();
-            Text1 = deck.ToString();
-        }
 
     }
 }

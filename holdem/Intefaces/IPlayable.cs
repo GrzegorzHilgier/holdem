@@ -4,12 +4,13 @@ using System.Text;
 
 namespace holdem
 {
-    interface IPlayable
+    public interface IPlayable
     {
+        int StartStack { get; set; }
         void StartNewGame();
         void Trigger(int amount);
         Log GetLog();
-        string GetStatus();
+        int AddPlayer(string nick, int position);
+        bool DeletePlayer(string nick);
     }
-
 }

@@ -1,45 +1,43 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
-namespace holdem.Classes
+namespace holdem
 {
-    class Hand<T> where T : new()
+    class Hand<T> 
     {
-        private bool isShown;
         List<T> itemList;
         ushort maxItems;
 
-        public bool IsShown { get => isShown; internal set => isShown = value; }
-        public List<T> ItemList
-        {
-            get
-            {
-                if (IsShown) return itemList;
-                else
-                {
-                    List<T> blankList = new List<T>();
-                    for (int i = 0; i < ItemList.Count; i++)
-                        blankList.Add(new T());
-                    return blankList;
-                }
-            }
-            private set => itemList = value;
-        }
+        public List<T> ItemList{get => itemList; private set => itemList = value;}
 
         public ushort MaxItems { get => maxItems; private set => maxItems = value; }
 
         public void Fill(Func<T> func)
         {
             while (ItemList.Count < MaxItems)
-                ItemList.Add(func());
+                 ItemList.Add(func());
         }
 
-        public Hand(ushort maxItems)
+        public Hand(ushort maxItemsInHand)
         {
-            IsShown = false;
             ItemList = new List<T>();
-            MaxItems = maxItems;
+            MaxItems = maxItemsInHand;
+        }
+
+        public virtual List<string> GetItemsString()
+        {
+            List<string> result = new List<string>();
+            foreach (T item in ItemList)
+                result.Add(item.ToString());
+            return result;
+        }
+
+        public override string ToString()
+        {
+            string result = string.Empty;
+            foreach (T item in ItemList)
+                result += item.ToString();
+            return result;
         }
     }
 }
