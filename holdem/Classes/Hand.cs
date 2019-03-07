@@ -7,7 +7,7 @@ namespace holdem
     {
         List<T> itemList;
         ushort maxItems;
-
+        private bool IsShown { get; set; }
         public List<T> ItemList{get => itemList; private set => itemList = value;}
 
         public ushort MaxItems { get => maxItems; private set => maxItems = value; }
@@ -22,6 +22,7 @@ namespace holdem
         {
             ItemList = new List<T>();
             MaxItems = maxItemsInHand;
+            IsShown = true;
         }
 
         public virtual List<string> GetItemsString()

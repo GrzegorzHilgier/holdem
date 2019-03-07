@@ -12,6 +12,7 @@ namespace holdem
 
         public CardFigure Figure { get => _figure; private set => _figure = value; }
         public CardSuit Suit { get => _suit; private set => _suit = value; }
+
         public Card(CardFigure figure, CardSuit suit)
         {
             _suit = suit;

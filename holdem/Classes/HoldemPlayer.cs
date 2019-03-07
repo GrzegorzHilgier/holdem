@@ -6,16 +6,19 @@ namespace holdem
 {
     class HoldemPlayer : Hand<Card>
     {
-        string _name;
-        int _stack;
-        public HoldemPlayer(string name, ushort maxItemsInHand = 2) : base(maxItemsInHand)
+
+        public string Name { get; private set; }
+        public int Stack { get; private set; }
+        public PlayerType Type { get; private set; }
+
+        public HoldemPlayer(string name, PlayerType playerType = PlayerType.HUMAN, ushort maxItemsInHand = 2) : base(maxItemsInHand)
         {
             Name = name;
             Stack = 0;
+            Type = playerType;
         }
 
-        public string Name { get => _name; set => _name = value; }
-        public int Stack { get => _stack; private set =>_stack = value; }
+
         public int ChangeStackAmount(int amount)
         {
             Stack += amount;
@@ -30,7 +33,7 @@ namespace holdem
         }
         public override string ToString()
         {
-            return $"{Name} {base.ToString()} {Stack}";
+            return $"{Name}, {base.ToString()}, {Stack}";
         }
     }
 }
