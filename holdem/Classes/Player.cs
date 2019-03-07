@@ -9,7 +9,6 @@ namespace holdem
         public int Stack { get; private set; }
         private bool ItemsShown { get; set; }
         private List<T> ItemList{ get; set; }
-
         public ushort MaxItems { get; private set; }
 
         public void Fill(Func<T> func)

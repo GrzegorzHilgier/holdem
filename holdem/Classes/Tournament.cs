@@ -4,11 +4,12 @@ using System.Text;
 
 namespace holdem
 {
-    enum TournamentStage {INIT, DEALERDRAW, TURN, FINISH }
+    public enum TournamentStage {INIT, DEALERDRAW, TURN, FINISH }
 
     public class Tournament : IPlayable
     {
-        internal TournamentStage ActualStage { get; private set; }
+        public TournamentStage ActualStage { get; private set; }
+        public TournamentStage NextStage { get; private set; }
         private int TurnCounter { get; set; }
         public List<HoldemPlayer> Players { get; private set; }
         public int StartStack { get; set; }
@@ -22,7 +23,7 @@ namespace holdem
         {
             Players = new List<HoldemPlayer>();
             StartStack = 1500;
-            ActualStage = TournamentStage.INIT;
+            ActualStage = NextStage = TournamentStage.INIT;
             GameLog = new Log();
             TurnCounter = 0;
         }
@@ -40,17 +41,34 @@ namespace holdem
 
         IRecordable IPlayable.Trigger(int amount)
         {
+            ActualStage = NextStage;
+            GameLog.Status.Add($"{ActualStage.ToString()}");
             switch (ActualStage)
             {
                 case TournamentStage.INIT:
                     GameLog.History.Add("Tournament Started");
-                    GameLog.History.Add($"Players  joined : {Players.Count}");
-                    GameLog.Status.Add($"turn nr: {TurnCounter} will start shortly");
+                    GameLog.History.Add($"Players  joined : {Players.Count}");                 
+                    NextStage = TournamentStage.TURN;
                     break;
+
                 case TournamentStage.DEALERDRAW:
                     break;
+
                 case TournamentStage.TURN:
-                    break;
+                    if (Players.Count == 1)
+                    {
+                        GameLog.History.Add("Tournament finished");
+                        GameLog.History.Add($"Player { Players[0]} won!");
+                        NextStage = TournamentStage.FINISH;
+                        break;
+                    }
+                    else
+                    {
+                        TurnCounter++;
+                        GameLog.History.Add($"Turn nr: {TurnCounter} started");
+                        break;
+                    }
+
                 case TournamentStage.FINISH:
                     break;
             }
