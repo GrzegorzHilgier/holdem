@@ -5,12 +5,12 @@ namespace holdem
 {
     public class Player<T> 
     {
-        List<T> itemList;
-        ushort maxItems;
+        public string Name { get; private set; }
+        public int Stack { get; private set; }
         private bool ItemsShown { get; set; }
-        private List<T> ItemList{get => itemList;  set => itemList = value;}
+        private List<T> ItemList{ get; set; }
 
-        public ushort MaxItems { get => maxItems; private set => maxItems = value; }
+        public ushort MaxItems { get; private set; }
 
         public void Fill(Func<T> func)
         {
@@ -18,11 +18,18 @@ namespace holdem
                  ItemList.Add(func());
         }
 
-        public Player(ushort maxItemsInHand)
+        public Player(string name, ushort maxItemsInHand)
         {
             ItemList = new List<T>();
             MaxItems = maxItemsInHand;
             ItemsShown = true;
+            Stack = 0;
+        }
+
+        internal int ChangeStackAmount(int amount)
+        {
+            Stack += amount;
+            return Stack;
         }
 
         public virtual bool GetItems(out List<T> list)
@@ -35,7 +42,6 @@ namespace holdem
                 return true;
             }
             else return false;
-
         }
 
         public virtual bool  GetItemsString(out List<string> result)
