@@ -4,17 +4,30 @@ using System.Text;
 
 namespace holdem
 {
-    public class Log
+    public class Log : IRecordable
     {
-        private List<HoldemPlayer> Players { get; set; }
-        public List<List<string>> ListOfItemStrings { get; set; }
-        internal Log(List<HoldemPlayer> players)
+        private List<string> History { get; set; }
+        List<string> IRecordable.History { get => History;}
+        private List<string> Status { get; set; }
+        List<string> IRecordable.Status { get => Status; }
+        public Log()
         {
-            Players = players;
-            ListOfItemStrings = new List<List<string>>();
-            foreach (HoldemPlayer player in Players)
-                ListOfItemStrings.Add(player.GetItemsString());
+            History = new List<string>();
+            Status = new List<string>();
         }
 
+        //private List<HoldemPlayer> Players { get; set; }
+        //public List<List<string>> ListOfItemStrings { get; set; }
+        //internal Log(List<HoldemPlayer> players)
+        //{
+        //    Players = players;
+        //    ListOfItemStrings = new List<List<string>>();
+        //    foreach (HoldemPlayer player in Players)
+        //    {
+        //        List<string> buf = new List<string>();
+        //        player.GetItemsString(out buf);
+        //        ListOfItemStrings.Add(buf);
+        //    }
+        //}
     }
 }

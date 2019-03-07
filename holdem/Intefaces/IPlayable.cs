@@ -6,11 +6,13 @@ namespace holdem
 {
     public interface IPlayable
     {
-        int StartStack { get; set; }
-        void StartNewGame();
-        void Trigger(int amount);
-        Log GetLog();
-        int AddPlayer(string nick, int position);
-        bool DeletePlayer(string nick);
+        List<HoldemPlayer> Players { get; }
+        IRecordable GameLog { get;}
+        IRecordable Trigger(int amount);
+        event EventHandler<FinishEventArgs> FinishEvent;
+        bool AddPlayer(string name, int position);
+        bool DeletePlayer(string name);
+        //save
+        //load
     }
 }

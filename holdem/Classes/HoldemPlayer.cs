@@ -4,7 +4,7 @@ using System.Text;
 
 namespace holdem
 {
-    class HoldemPlayer : Hand<Card>
+    public class HoldemPlayer : Player<Card>
     {
 
         public string Name { get; private set; }
@@ -18,18 +18,27 @@ namespace holdem
             Type = playerType;
         }
 
-
         public int ChangeStackAmount(int amount)
         {
             Stack += amount;
             return Stack;
         }
-        public override List<string> GetItemsString()
+        public override bool GetItemsString(out List<string> result)
         {
-            List<string> result = base.GetItemsString();
-            result.Insert(0, Name);
-            result.Add(Stack.ToString());
-            return result;
+
+            if (base.GetItemsString(out result))
+            {
+                result.Insert(0, Name);
+                result.Add(Stack.ToString());
+                return true;
+            }
+            else
+            {
+                result.Insert(0, Name);
+                result.Add(Stack.ToString());
+                return false;
+            }
+
         }
         public override string ToString()
         {
