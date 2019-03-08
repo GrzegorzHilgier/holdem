@@ -10,15 +10,16 @@ namespace holdem
 
         public List<HoldemPlayer> Players { get; private set; }
         private CardDeck Deck { get; set; }
+        public IRecordable TurnLog { get; private set; }
         public TurnStage ActualStage { get; private set; }
 
         IRecordable IPlayable.GameLog => throw new NotImplementedException();
 
         public Turn(List<HoldemPlayer> players)
         {
-            Players = new List<HoldemPlayer>();
-            Players.AddRange(players);
+            Players = players;
             Deck = new CardDeck();
+            TurnLog = new Log();
             TurnStage ActualStage = TurnStage.DISTRIBUTION;
         }
 
@@ -37,7 +38,15 @@ namespace holdem
 
         IRecordable IPlayable.Trigger(int amount)
         {
-            throw new NotImplementedException();
+
+            switch(ActualStage)
+            {
+                case TurnStage.DISTRIBUTION:
+                    foreach (HoldemPlayer p in Players) p.Fill(Deck.DrawCard);
+                    TurnLog.History.Add("Cards distributed");
+                    break;
+            }
+            return TurnLog;
         }
 
         bool IPlayable.AddPlayer(string name, int position)

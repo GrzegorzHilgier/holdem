@@ -37,16 +37,16 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <ListBox ItemsSource="{Binding Players[0]}" Style="{StaticResource PlayerData}" />
-            <ListBox Grid.Column="1"  ItemsSource="{Binding Players[1]}" Style="{StaticResource PlayerData}" />
-            <ListBox Grid.Column="2"  ItemsSource="{Binding Players[2]}" Style="{StaticResource PlayerData}" />
-            <ListBox Grid.Column="3"  ItemsSource="{Binding Players[3]}" Style="{StaticResource PlayerData}" />
-            <ListBox Grid.Column="4"  ItemsSource="{Binding Players[4]}" Style="{StaticResource PlayerData}" />
-            <ListBox Grid.Column="5"  ItemsSource="{Binding Players[5]}" Style="{StaticResource PlayerData}" />
-            <ListBox Grid.Column="6"  ItemsSource="{Binding Players[6]}" Style="{StaticResource PlayerData}" />
-            <ListBox Grid.Column="7"  ItemsSource="{Binding Players[7]}" Style="{StaticResource PlayerData}" />
-            <ListBox Grid.Column="8"  ItemsSource="{Binding Players[8]}" Style="{StaticResource PlayerData}" />
-            <ListBox Grid.Column="9"  ItemsSource="{Binding Players[9]}" Style="{StaticResource PlayerData}" />
+            <ListBox ItemsSource="{Binding Player1}" Style="{StaticResource PlayerData}" />
+            <ListBox Grid.Column="1"  ItemsSource="{Binding Player2}" Style="{StaticResource PlayerData}" />
+            <ListBox Grid.Column="2"  ItemsSource="{Binding Player3}" Style="{StaticResource PlayerData}" />
+            <ListBox Grid.Column="3"  ItemsSource="{Binding Player4}" Style="{StaticResource PlayerData}" />
+            <ListBox Grid.Column="4"  ItemsSource="{Binding Player5}" Style="{StaticResource PlayerData}" />
+            <ListBox Grid.Column="5"  ItemsSource="{Binding Player6}" Style="{StaticResource PlayerData}" />
+            <ListBox Grid.Column="6"  ItemsSource="{Binding Player7}" Style="{StaticResource PlayerData}" />
+            <ListBox Grid.Column="7"  ItemsSource="{Binding Player8}" Style="{StaticResource PlayerData}" />
+            <ListBox Grid.Column="8"  ItemsSource="{Binding Player9}" Style="{StaticResource PlayerData}" />
+            <ListBox Grid.Column="9"  ItemsSource="{Binding Player10}" Style="{StaticResource PlayerData}" />
 
         </Grid>
 

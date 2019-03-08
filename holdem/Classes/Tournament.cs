@@ -15,7 +15,7 @@ namespace holdem
         public int StartStack { get; set; }
 
         public IRecordable GameLog { get; private set; }
-        public Turn ActualTurn { get; private set; }
+        public IPlayable ActualTurn { get; private set; }
 
         public event EventHandler<FinishEventArgs> FinishEvent;
 
@@ -47,7 +47,8 @@ namespace holdem
             {
                 case TournamentStage.INIT:
                     GameLog.History.Add("Tournament Started");
-                    GameLog.History.Add($"Players  joined : {Players.Count}");                 
+                    GameLog.History.Add($"Players  joined : {Players.Count}");
+                    foreach (HoldemPlayer p in Players) p.ChangeStackAmount(StartStack);
                     NextStage = TournamentStage.TURN;
                     break;
 
@@ -66,6 +67,8 @@ namespace holdem
                     {
                         TurnCounter++;
                         GameLog.History.Add($"Turn nr: {TurnCounter} started");
+                        ActualTurn = new Turn(Players);
+                        GameLog.Add(ActualTurn.Trigger(0));
                         break;
                     }
 

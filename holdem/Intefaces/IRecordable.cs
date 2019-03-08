@@ -8,5 +8,6 @@ namespace holdem
     {
         List<string> History { get; }
         List<string> Status { get; }
+        void Add(IRecordable log);
     }
 }

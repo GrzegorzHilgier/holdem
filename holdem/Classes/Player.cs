@@ -23,6 +23,7 @@ namespace holdem
             MaxItems = maxItemsInHand;
             ItemsShown = true;
             Stack = 0;
+            Name = name;
         }
 
         internal int ChangeStackAmount(int amount)

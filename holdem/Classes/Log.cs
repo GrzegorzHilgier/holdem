@@ -16,6 +16,12 @@ namespace holdem
             Status = new List<string>();
         }
 
+        void IRecordable.Add(IRecordable log)
+        {
+            History.AddRange(log.History);
+            Status.AddRange(log.Status);
+        }
+
         //private List<HoldemPlayer> Players { get; set; }
         //public List<List<string>> ListOfItemStrings { get; set; }
         //internal Log(List<HoldemPlayer> players)
