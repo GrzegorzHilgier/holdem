@@ -27,7 +27,7 @@ namespace holdemTestUI.ViewModel
         {
             for (int i = 0; i < 10; i++)
                 PlayersToShow.Add(new ObservableCollection<string>());
-            StartTournament();
+
           
 
         }

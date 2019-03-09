@@ -18,6 +18,7 @@ namespace holdem
         public IPlayable ActualTurn { get; private set; }
 
         public event EventHandler<FinishEventArgs> FinishEvent;
+        private delegate IRecordable ChildTrigger(int amount);
 
         public Tournament()
         {
@@ -56,6 +57,7 @@ namespace holdem
                     break;
 
                 case TournamentStage.TURN:
+
                     if (Players.Count == 1)
                     {
                         GameLog.History.Add("Tournament finished");
@@ -65,11 +67,18 @@ namespace holdem
                     }
                     else
                     {
-                        TurnCounter++;
-                        GameLog.History.Add($"Turn nr: {TurnCounter} started");
-                        ActualTurn = new Turn(Players);
-                        GameLog.Add(ActualTurn.Trigger(0));
-                        break;
+                        if (ActualTurn == null)
+                        {
+                            TurnCounter++;
+                            GameLog.History.Add($"Turn nr: {TurnCounter} started");
+                            ActualTurn = new Turn(Players);
+                            break;
+                        }
+                        else
+                        {
+                            GameLog.Add(ActualTurn.Trigger(amount));
+                            break;
+                        }
                     }
 
                 case TournamentStage.FINISH:
